@@ -1,0 +1,16 @@
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
+
+// Abstracts
+@import "abstracts/variables";
+@import "abstracts/mixins";
+// Base styles
+@import "base/typography";
+@import "base/reset";
+@import "base/utilities";
+// Vendors
+@import "vendors/vendors";
+// Pages
+@import "pages/pages";
+// Components
+@import "components/components";
