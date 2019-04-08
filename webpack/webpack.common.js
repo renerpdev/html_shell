@@ -1,7 +1,11 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack'); // to access built-in plugins
 
 module.exports = {
+    output: {
+        path: path.resolve('./dist')
+    },
     module: {
         rules: [
             {
@@ -47,6 +51,7 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.ProgressPlugin(),
         new HtmlWebpackPlugin({
             template: path.resolve("./src/index.pug"),
             // template: "./src/index.html",

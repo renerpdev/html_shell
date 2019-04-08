@@ -1,6 +1,8 @@
 const merge = require('webpack-merge');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const baseConfig = require('./webpack.common.js');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 
 module.exports = merge(baseConfig, {
     output: {
@@ -12,6 +14,7 @@ module.exports = merge(baseConfig, {
                 test: /\.s?css$/,
                 use: [
                     'style-loader',
+                    MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
                     'sass-loader',
@@ -37,8 +40,14 @@ module.exports = merge(baseConfig, {
             }),
         ],
     },
-
     plugins: [
-        // Extract imported CSS into own file
+        new MiniCssExtractPlugin({
+            filename: '[name].min.css',
+            chunkFilename: '[id].min.css'
+        }),
+        // Minify CSS
+        new webpack.LoaderOptionsPlugin({
+            minimize: true,
+        }),
     ],
 });
