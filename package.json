@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "init": "git init && git add . && git commit --message \"first commit\" && npm i && npm run start",
     "build": "webpack  --mode production --config webpack/webpack.prod.js",
     "dev": "webpack  --mode development --config webpack/webpack.dev.js",
     "start": "webpack-dev-server --mode development --config webpack/webpack.dev.js --open"
