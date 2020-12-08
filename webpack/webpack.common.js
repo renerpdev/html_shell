@@ -2,24 +2,35 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack'); // to access built-in plugins
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+
+const pages = ['index'];
 
 module.exports = {
     output: {
+        filename: "[name].js",
         path: path.resolve('./dist')
     },
     module: {
         rules: [
             {
+                test: require.resolve('jquery'),
+                loader: 'expose-loader',
+                options: {
+                    exposes: ['$', 'jQuery'],
+                },
+            },
+            {
                 test: /\.html$/,
                 use: [
                     {
-                        loader: "html-loader",
+                        loader: "html-loader?minimize=false",
                     }
                 ]
             },
             {
                 test: /\.pug$/,
-                use: ['pug-loader']
+                use: ['pug-loader?pretty=true']
             },
             {
                 test: /\.js$/,
@@ -33,7 +44,7 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'img/[hash]-[name].[ext]'
+                            name: 'img/[name].[ext]'
                         }
                     }
                 ],
@@ -43,7 +54,7 @@ module.exports = {
                 use: [{
                     loader: 'file-loader',
                     options: {
-                        name: 'fonts/[hash]-[name].[ext]'
+                        name: 'webfonts/[name].[ext]'
                     }
                 }
                 ]
@@ -53,11 +64,17 @@ module.exports = {
 
     plugins: [
         new webpack.ProgressPlugin(),
-        new HtmlWebpackPlugin({
-            template: path.resolve("./src/index.pug"),
-            // template: "./src/index.html",
-            filename: "./index.html"
-        }),
         new CleanWebpackPlugin(),
-    ],
+        new CopyPlugin({
+            patterns: [
+                { from: './src/vendors', to: './vendors' },
+                { from: './src/fonts', to: './webfonts' },
+            ],
+        }),
+    ].concat(pages.map(function (page) {
+        return new HtmlWebpackPlugin({
+            template: path.resolve(`./src/pages/${page}.pug`),
+            filename: `./${page}.html`
+        })
+    })),
 };

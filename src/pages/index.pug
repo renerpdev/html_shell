@@ -1,11 +1,11 @@
-extends templates/main
+extends ../templates/main
 
 block metatags
     title Index
 
 block content
     .vh-100.d-flex.flex-column
-        include pug/nav
+        include ../components/nav
         .container.py-5.d-flex.flex-column.justify-content-center.align-items-center.flex-grow-1
             h1.primary-heading.font-weight-bold.text-white Welcome to html-shell
             .row
@@ -35,4 +35,4 @@ block content
                     i.fab.fa-twitter-square.mx-2(aria-hidden=true)
                 a.text-white(href="")
                     i.fab.fa-linkedin.mx-2(aria-hidden=true)
-        include pug/footer
+        include ../components/footer

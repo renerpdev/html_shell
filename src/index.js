@@ -1,5 +1,2 @@
-import 'jquery';
-import 'popper.js';
-import "bootstrap";
-import "./js/app"
+import "./scripts"
 import './sass/main.scss';

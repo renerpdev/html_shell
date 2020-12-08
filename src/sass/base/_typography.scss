@@ -1,5 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Poiret+One|Dancing+Script|Open+Sans&display=swap');
 
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: $font-weight-normal;
+  src: local('Open Sans Regular'),
+  url('../fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
 .poiret-one{
   font-family: 'Poiret One', cursive;
 }

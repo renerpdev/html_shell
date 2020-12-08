@@ -1,6 +1,15 @@
-$primary_color: #546E7A;
-$secondary_color: #78909C;
-$tertiary_color: #90A4AE;
+/* Colors */
+$primary_color_light: #78909C;
+$primary_color_dark: #90A4AE;
 $black_color: #263238;
-$grey_color: #ECEFF1;
-$white_color: #FAFAFA
+$gray_color_light: #ECEFF1;
+$gray_color_dark: #e2e2e2;
+$white_color: #fff;
+$red_color: #DF1919;
+
+/* Font weights */
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;

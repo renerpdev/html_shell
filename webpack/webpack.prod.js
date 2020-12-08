@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 
 module.exports = merge(baseConfig, {
+    mode: 'production',
     output: {
         filename: 'main.min.js',
     },
@@ -13,11 +14,17 @@ module.exports = merge(baseConfig, {
             {
                 test: /\.s?css$/,
                 use: [
-                    'style-loader',
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
-                    'sass-loader',
+                    {
+                        loader: "sass-loader",
+                        options: {
+                            // Prefer `dart-sass`
+                            implementation: require("sass"),
+                            webpackImporter: false,
+                        },
+                    },
                 ],
             },
         ],
