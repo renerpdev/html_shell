@@ -2,6 +2,9 @@
 @import "abstracts/variables";
 @import "abstracts/mixins";
 @import "abstracts/functions";
+// Themes
+@import "themes/dark";
+@import "themes/light";
 // Base styles
 @import "base/typography";
 @import "base/reset";
@@ -9,11 +12,9 @@
 // Layouts
 @import "layouts/navigation";
 @import "layouts/footer";
+@import "layouts/grid";
 // Components
 @import "components/buttons";
 @import "components/service-item";
 // Pages
 @import "pages/home";
-// Themes
-@import "themes/dark";
-@import "themes/light";

@@ -1,0 +1,35 @@
+.grid {
+  position: relative;
+  display: grid;
+  grid-column-gap: $grid-gap;
+  grid-row-gap: $grid-gap;
+  padding: 0;
+  width: 100%;
+  max-width: $max-grid-width;
+  margin-left: auto;
+  grid-template-columns: repeat(#{$grid-columns}, 1fr);
+  grid-template-rows: auto;
+
+  @include responsive(mobile) {
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    padding-left: $grid-margin;
+    padding-right: $grid-margin;
+  }
+
+  &--fluid {
+    max-width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  @include create-grid-layout();
+  @include responsive(tablet) {
+    @include create-grid-layout(tablet-);
+  }
+  @include responsive(mobile) {
+    @include create-grid-layout(mobile-);
+  }
+}
