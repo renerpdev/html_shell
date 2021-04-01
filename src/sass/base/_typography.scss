@@ -1,11 +1,20 @@
-@import url('https://fonts.googleapis.com/css?family=Poiret+One|Dancing+Script|Open+Sans&display=swap');
+@use "sass:map";
+@import url('https://fonts.googleapis.com/css?family=Poiret+One|Dancing+Script&display=swap');
 
-@font-face {
-  font-family: 'Open Sans';
-  font-style: normal;
-  font-weight: $font-weight-normal;
-  src: local('Open Sans Regular'),
-  url('../fonts/OpenSans-Regular.ttf') format('truetype');
+$font-faces: (// add or remove font types
+        'Light':('weight':$font-weight-light,'style':normal),
+        'Regular':('weight':$font-weight-normal,'style':normal),
+        'Bold':('weight':$font-weight-bold,'style':normal),
+);
+
+@each $name,$props in $font-faces{
+  @font-face {
+    font-family: $font-face-name;
+    font-style: map.get($props,'style');
+    font-weight: map.get($props,'weight');
+    src: local('#{$font-face-name} #{$name}'),
+    url('../fonts/#{$font-face-name}-#{$name}.ttf') format('truetype');
+  }
 }
 
 .poiret-one{
