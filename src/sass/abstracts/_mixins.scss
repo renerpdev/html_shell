@@ -48,3 +48,24 @@ RESPONSIVE BREAKPOINTS
   ;
   }
 }
+
+
+/**
+  mixin to autogenerate GRID layout
+ */
+@mixin create-grid-layout($prefix:'') {
+  $columns: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+
+  @each $col in $columns {
+    .#{$prefix}col-start-#{$col} {
+      grid-column: #{$col} / span fill;
+
+      @each $width in $columns {
+        &.#{$prefix}col-width-#{$width} {
+          grid-column: #{$col} / span #{$width};
+        }
+      }
+    }
+  }
+}
+
