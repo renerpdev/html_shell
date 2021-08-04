@@ -16,52 +16,58 @@ RESPONSIVE BREAKPOINTS
 - tab-land
 - big-desk
  */
-@mixin responsive($breakpoint,$dpr:1) {
-  @if $breakpoint == phone {
-    @media (max-width: 576px) and (-webkit-min-device-pixel-ratio: $dpr) {
-      @content
+@mixin responsive($breakpoint, $dpr: 1, $start: max) {
+  @if $breakpoint == mobile-mini {
+    @media (#{$start}-width: 420px) and (-webkit-min-device-pixel-ratio: $dpr) {
+      @content;
     }
-  ;
   }
-  @if $breakpoint == phone-land {
-    @media (max-width: 768px) and (-webkit-min-device-pixel-ratio: $dpr) {
-      @content
+  @if $breakpoint == mobile {
+    @media (#{$start}-width: 576px) and (-webkit-min-device-pixel-ratio: $dpr) {
+      @content;
     }
-  ;
   }
-  @if $breakpoint == tab-port {
-    @media (max-width: 992px) and (-webkit-min-device-pixel-ratio: $dpr) {
-      @content
+  @if $breakpoint == mobile-land {
+    @media (#{$start}-width: 768px) and (-webkit-min-device-pixel-ratio: $dpr) {
+      @content;
     }
-  ;
   }
-  @if $breakpoint == tab-land {
-    @media (max-width: 1200px) and (-webkit-min-device-pixel-ratio: $dpr) {
-      @content
+  @if $breakpoint == tablet {
+    @media (#{$start}-width: 992px) and (-webkit-min-device-pixel-ratio: $dpr) {
+      @content;
     }
-  ;
+  }
+  @if $breakpoint == tablet-land {
+    @media (#{$start}-width: 1200px) and (-webkit-min-device-pixel-ratio: $dpr) {
+      @content;
+    }
+  }
+  @if $breakpoint == laptop {
+    @media (#{$start}-width: 1366px) and (-webkit-min-device-pixel-ratio: $dpr) {
+      @content;
+    }
   }
   @if $breakpoint == big-desk {
     @media (min-width: 1800px) and (-webkit-min-device-pixel-ratio: $dpr) {
-      @content
+      @content;
     }
-  ;
   }
 }
-
 
 /**
   mixin to autogenerate GRID layout
  */
-@mixin create-grid-layout($prefix:'') {
-  $columns: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+@mixin create-grid-layout($prefix: '') {
+  $cols: $grid-columns;
 
-  @each $col in $columns {
-    .#{$prefix}col-start-#{$col} {
+  @for $col from 1 through $cols {
+    .#{$prefix}col-start-#{$col},
+    .#{$prefix}col-s-#{$col} {
       grid-column: #{$col} / span fill;
 
-      @each $width in $columns {
-        &.#{$prefix}col-width-#{$width} {
+      @for $width from 1 through $cols {
+        &.#{$prefix}col-width-#{$width},
+        &.#{$prefix}col-w-#{$width} {
           grid-column: #{$col} / span #{$width};
         }
       }
