@@ -3,8 +3,13 @@ const path = require('path');
 const webpack = require('webpack'); // to access built-in plugins
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const fs = require('fs');
 
-const pages = ['index'];
+const pages = fs
+  .readdirSync(path.resolve('./src/pages/'))
+  .map(function (filename) {
+    return filename.replace(/(\w+)[.]\w+$/g, '$1');
+  });
 
 module.exports = {
     output: {
